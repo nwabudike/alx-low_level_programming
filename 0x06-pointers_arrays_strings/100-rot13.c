@@ -1,23 +1,29 @@
 #include "main.h"
+
 /**
- * *_strcat - concatenates two strings
- * @dest: pointer destination
- * @src: pointer source
- * Return: void
-*/
+ * *rot13 - encodes a string using rot13.
+ * @s: int type array pointer
+ * Return: encoded
+ */
 
-char *_strcat(char *dest, char *src)
+char *rot13(char *s)
 {
-int a = -1, i;
-for (i = 0; dest[i] != '\0'; i++)
-;
+	int i, ii;
+	char input[] =  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char output[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-do {
-	a++;
-	dest[i] = src[a];
-	i++;
-} while (src[a] != '\0');
-
-return (dest);
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (ii = 0; ii < 54; ii++)
+		{
+			if (((s[i] <= 'z' && s[i] >= 'a') || (s[i] <= 'Z' && s[i] >= 'A'))
+			&& s[i] == input[ii])
+			{
+				s[i] = output[ii];
+				break;
+			}
+		}
+	}
+	return (s);
 }
 
